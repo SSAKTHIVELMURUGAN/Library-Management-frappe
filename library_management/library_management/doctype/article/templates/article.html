@@ -1,0 +1,32 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+  <div class="book-container">
+    <!-- Book Image Section -->
+    <div class="book-image">
+      <img src="{{ image }}" alt="{{ title }}" class="image">
+    </div>
+    
+    <!-- Book Info Section -->
+    <div class="book-info">
+      <h1 class="book-title">{{ title | default('Untitled') }}</h1>
+      <p class="author">By {{ author | default('Unknown Author') }}</p>
+      <p class="status">
+        {% if status == 'Available' %}
+          <span class="status-available">Available</span>
+        {% elif status == 'Issued' %}
+          <span class="status-issued">Issued</span>
+        {% else %}
+          <span class="status-unknown">Status: {{ status }}</span>
+        {% endif %}
+      </p>
+      <p><strong>Publisher:</strong> {{ publisher | default('Unknown Publisher') }}</p>
+      <p><strong>ISBN:</strong> {{ isbn | default('N/A') }}</p>
+      
+      <div class="description">
+        <h3>Description</h3>
+        <p>{{ description | default('No description available.') }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
